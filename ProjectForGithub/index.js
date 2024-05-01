@@ -6,7 +6,7 @@ const path = require('path');
     const app = express();
 
     //this code is going to read and retrive the file 
-    app.get('dir..name','filename',function(res, res){
+    app.get('dir..name/:filename',function(res, res){
         fs.read(path.join('..dirName/:fileName',function(err, data){
             if(err){
                 res.status(500).json({error:"File Not retrived"});
@@ -16,8 +16,8 @@ const path = require('path');
     });
 
     // this code is going to take the file form the dir
-    app.get('..dirr','fileName..',function(req, res){
-        const filePath = path.join('dirr/:filename',res.params.filename);
+    app.get('..dirr/:fileName..',function(req, res){
+        const filePath = path.join('dirr/:filename',req.params.filename); //req.params.filename gives whatever is inside the get('/')
         fs.readFile('..fileName','utf-8', function(err, data){
             if(err){
                 res.status(404).json({error:"file not found"})
